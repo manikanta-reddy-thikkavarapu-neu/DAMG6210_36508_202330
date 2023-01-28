@@ -1,5 +1,7 @@
 package edu.neu.coe.info6205.threesum;
 
+import edu.neu.coe.info6205.util.Stopwatch;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -78,4 +80,18 @@ public class ThreeSumQuadraticWithCalipers implements ThreeSum {
 
     private final int[] a;
     private final int length;
+
+    public static void main(String[] args) {
+        int n = 6400;
+        int[] array = new int[n];
+        for (int j = 0; j < n; j++) {
+            int rnd = -50;
+            array[j] = rnd;
+            rnd += 6;
+        }
+        ThreeSumQuadraticWithCalipers threeSumQuadraticWithCalipers = new ThreeSumQuadraticWithCalipers(array);
+        Stopwatch stopwatch = new Stopwatch();
+        threeSumQuadraticWithCalipers.getTriples();
+        System.out.println("Time taken to complete the program : " + stopwatch.lap() + " milliseconds");
+    }
 }

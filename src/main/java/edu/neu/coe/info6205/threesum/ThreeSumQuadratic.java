@@ -65,7 +65,7 @@ public class ThreeSumQuadratic implements ThreeSum {
     private final int length;
 
     public static void main(String[] args) {
-        int n = 1450;
+        int n = 6400;
         int[] array = new int[n];
         for (int j = 0; j < n; j++) {
             int rnd = -50;
@@ -75,7 +75,7 @@ public class ThreeSumQuadratic implements ThreeSum {
         ThreeSumQuadratic threeSumQuadratic = new ThreeSumQuadratic(array);
         Stopwatch stopwatch = new Stopwatch();
         threeSumQuadratic.getTriples();
-        System.out.println(stopwatch.lap());
+        System.out.println("Time taken to complete the program : " + stopwatch.lap() + " milliseconds");
     }
 
 }
