@@ -1,10 +1,13 @@
 package edu.neu.coe.info6205.threesum;
 
+import edu.neu.coe.info6205.util.Stopwatch;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 /**
  * Implementation of ThreeSum which follows the approach of dividing the solution-space into
@@ -62,14 +65,17 @@ public class ThreeSumQuadratic implements ThreeSum {
     private final int length;
 
     public static void main(String[] args) {
-        for(int i=0;i<10;i++) {
-            int n = ThreadLocalRandom.current().nextInt();
-            ArrayList<Integer> array = new ArrayList<Integer>();
-            for(int j=0;j<n;j++) {
-                array.add(ThreadLocalRandom.current().nextInt());
-            }
-            System.out.println(array);
+        int n = 1450;
+        int[] array = new int[n];
+        for (int j = 0; j < n; j++) {
+            int rnd = -50;
+            array[j] = rnd;
+            rnd += 6;
         }
+        ThreeSumQuadratic threeSumQuadratic = new ThreeSumQuadratic(array);
+        Stopwatch stopwatch = new Stopwatch();
+        threeSumQuadratic.getTriples();
+        System.out.println(stopwatch.lap());
     }
 
 }
