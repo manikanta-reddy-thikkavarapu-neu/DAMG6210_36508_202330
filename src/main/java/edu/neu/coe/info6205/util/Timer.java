@@ -177,7 +177,7 @@ public class Timer {
      */
     private static long getClock() {
         // FIXME by replacing the following code
-         return 0;
+         return System.nanoTime();
         // END 
     }
 
@@ -190,7 +190,7 @@ public class Timer {
      */
     private static double toMillisecs(long ticks) {
         // FIXME by replacing the following code
-         return 0;
+         return ticks/1000000;
         // END 
     }
 
