@@ -3,9 +3,12 @@ package edu.neu.coe.info6205.sort.elementary;
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.sort.HelperFactory;
 import edu.neu.coe.info6205.sort.SortWithHelper;
+import edu.neu.coe.info6205.util.Benchmark_Timer;
 import edu.neu.coe.info6205.util.Config;
 
 import java.util.Random;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class InsertionSortWithDifferentArrayValuesAndOrdering {
 
@@ -32,44 +35,73 @@ public class InsertionSortWithDifferentArrayValuesAndOrdering {
         // Partially ordered array
         partiallyOrderedArray(arr);
 
-
     }
 
     public static void randomArray(Integer[] arr) {
-        for(int i=0;i<arr.length;i++) {
-            Random rand = new Random();
-            arr[i] = rand.nextInt(50);
-        }
-        arraySort(arr.length, arr);
+        Consumer<Integer[]> randomFunc = randomOrderedArr -> arraySort(arr.length, randomOrderedArr);
+        Benchmark_Timer<Integer[]> randomOrderTimer = new Benchmark_Timer<>("Sort random ordered array of " + arr.length + " elements", randomFunc);
+        Supplier<Integer[]> random = () -> {
+            Integer[] randomArr = new Integer[arr.length];
+            for(int i=0;i<arr.length;i++) {
+                Random rand = new Random();
+                randomArr[i] = rand.nextInt(50);
+            }
+            return randomArr;
+        };
+        randomFunc.accept(random.get());
+        double randomTime = randomOrderTimer.run(random.get(), arr.length);
+        System.out.println("Time to run random array of " + arr.length + " elements is " + randomTime);
     }
 
     public static void orderedArray(Integer[] arr) {
-        for(int i=0;i<arr.length;i++) {
-            arr[i] = i;
-        }
-        arraySort(arr.length, arr);
+        Consumer<Integer[]> orderedFunc = orderedArr -> arraySort(arr.length, orderedArr);
+        Benchmark_Timer<Integer[]> orderedTimer = new Benchmark_Timer<>("Sort ordered array of " + arr.length + " elements", orderedFunc);
+        Supplier<Integer[]> ordered = () -> {
+            Integer[] orderedArr = new Integer[arr.length];
+            for(int i=0;i<arr.length;i++) {
+                orderedArr[i] = i;
+            }
+            return orderedArr;
+        };
+        orderedFunc.accept(ordered.get());
+        double orderedTime = orderedTimer.run(ordered.get(), arr.length);
+        System.out.println("Time to run ordered array of " + arr.length + " elements is " + orderedTime);
     }
 
     public static void reverseOrderedArray(Integer[] arr) {
-        for(int i=arr.length-1;i>=0;i--) {
-            arr[arr.length -1 - i] = i;
-        }
-        arraySort(arr.length, arr);
+        Consumer<Integer[]> reverseFunc = reverseArr -> arraySort(arr.length, reverseArr);
+        Benchmark_Timer<Integer[]> reverseTimer = new Benchmark_Timer<>("Sort reverse array of " + arr.length + " elements", reverseFunc);
+        Supplier<Integer[]> reverse = () -> {
+            Integer[] reverseArr = new Integer[arr.length];
+            for(int i=arr.length-1;i>=0;i--) {
+                reverseArr[arr.length -1 - i] = i;
+            }
+            return reverseArr;
+        };
+        reverseFunc.accept(reverse.get());
+        double reverseTime = reverseTimer.run(reverse.get(), arr.length);
+        System.out.println("Time to run reverse array of " + arr.length + " elements is " + reverseTime);
     }
 
     public static void partiallyOrderedArray(Integer[] arr) {
+        Consumer<Integer[]> partialOrderedFunc = partialOrderedArr -> arraySort(arr.length, partialOrderedArr);
+        Benchmark_Timer<Integer[]> partialOrderedTimer = new Benchmark_Timer<>("Sort partial ordered array of " + arr.length + " elements", partialOrderedFunc);
+        Supplier<Integer[]> partialOrdered = () -> {
+            Integer[] partialOrderedArr = new Integer[arr.length];
+            // Ordered
+            for(int i=0;i<arr.length/2;i++) {
+                partialOrderedArr[i] = i;
+            }
 
-        // Ordered
-        for(int i=0;i<arr.length/2;i++) {
-            arr[i] = i;
-        }
-
-        //Random
-        for(int i=arr.length/2;i<arr.length;i++) {
-            Random rand = new Random();
-            arr[i] = rand.nextInt(50);
-        }
-
-        arraySort(arr.length, arr);
+            //Random
+            for(int i=arr.length/2;i<arr.length;i++) {
+                Random rand = new Random();
+                partialOrderedArr[i] = rand.nextInt(50);
+            }
+            return partialOrderedArr;
+        };
+        partialOrderedFunc.accept(partialOrdered.get());
+        double partialOrderedTime = partialOrderedTimer.run(partialOrdered.get(), arr.length);
+        System.out.println("Time to run partial ordered array of " + arr.length + " elements is " + partialOrderedTime);
     }
 }
