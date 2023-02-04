@@ -22,7 +22,7 @@ public class InsertionSortWithDifferentArrayValuesAndOrdering {
 
         // Random array
         randomArray(arr);
-        
+
         // Ordered array
         orderedArray(arr);
 
