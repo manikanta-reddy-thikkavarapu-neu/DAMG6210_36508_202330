@@ -22,7 +22,7 @@ public class InsertionSortWithDifferentArrayValuesAndOrdering {
 
         // Random array
         randomArray(arr);
-
+        
         // Ordered array
         orderedArray(arr);
 
@@ -31,6 +31,8 @@ public class InsertionSortWithDifferentArrayValuesAndOrdering {
 
         // Partially ordered array
         partiallyOrderedArray(arr);
+
+
     }
 
     public static void randomArray(Integer[] arr) {
