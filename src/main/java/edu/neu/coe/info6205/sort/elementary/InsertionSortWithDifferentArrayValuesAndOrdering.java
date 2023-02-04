@@ -20,7 +20,7 @@ public class InsertionSortWithDifferentArrayValuesAndOrdering {
     }
 
     public static void main(String[] args) {
-        int n = 200;
+        int n = 3200;
         Integer[] arr = new Integer[n];
 
         // Random array
@@ -44,12 +44,12 @@ public class InsertionSortWithDifferentArrayValuesAndOrdering {
             Integer[] randomArr = new Integer[arr.length];
             for(int i=0;i<arr.length;i++) {
                 Random rand = new Random();
-                randomArr[i] = rand.nextInt(50);
+                randomArr[i] = rand.nextInt(arr.length);
             }
             return randomArr;
         };
         randomFunc.accept(random.get());
-        double randomTime = randomOrderTimer.run(random.get(), arr.length);
+        double randomTime = randomOrderTimer.run(random.get(), 100);
         System.out.println("Time to run random array of " + arr.length + " elements is " + randomTime);
     }
 
@@ -64,7 +64,7 @@ public class InsertionSortWithDifferentArrayValuesAndOrdering {
             return orderedArr;
         };
         orderedFunc.accept(ordered.get());
-        double orderedTime = orderedTimer.run(ordered.get(), arr.length);
+        double orderedTime = orderedTimer.run(ordered.get(), 100);
         System.out.println("Time to run ordered array of " + arr.length + " elements is " + orderedTime);
     }
 
@@ -79,7 +79,7 @@ public class InsertionSortWithDifferentArrayValuesAndOrdering {
             return reverseArr;
         };
         reverseFunc.accept(reverse.get());
-        double reverseTime = reverseTimer.run(reverse.get(), arr.length);
+        double reverseTime = reverseTimer.run(reverse.get(), 100);
         System.out.println("Time to run reverse array of " + arr.length + " elements is " + reverseTime);
     }
 
@@ -96,12 +96,12 @@ public class InsertionSortWithDifferentArrayValuesAndOrdering {
             //Random
             for(int i=arr.length/2;i<arr.length;i++) {
                 Random rand = new Random();
-                partialOrderedArr[i] = rand.nextInt(50);
+                partialOrderedArr[i] = rand.nextInt(arr.length/2) + arr.length/2;
             }
             return partialOrderedArr;
         };
         partialOrderedFunc.accept(partialOrdered.get());
-        double partialOrderedTime = partialOrderedTimer.run(partialOrdered.get(), arr.length);
+        double partialOrderedTime = partialOrderedTimer.run(partialOrdered.get(), 100);
         System.out.println("Time to run partial ordered array of " + arr.length + " elements is " + partialOrderedTime);
     }
 }
