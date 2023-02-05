@@ -20,20 +20,20 @@ public class InsertionSortWithDifferentArrayValuesAndOrdering {
     }
 
     public static void main(String[] args) {
-        int n = 3200;
+        int n = 6400;
         Integer[] arr = new Integer[n];
-
-        // Random array
-        randomArray(arr);
-
-        // Ordered array
-        orderedArray(arr);
 
         // Reverse ordered array
         reverseOrderedArray(arr);
 
+        // Random array
+        randomArray(arr);
+
         // Partially ordered array
         partiallyOrderedArray(arr);
+
+        // Ordered array
+        orderedArray(arr);
 
     }
 
