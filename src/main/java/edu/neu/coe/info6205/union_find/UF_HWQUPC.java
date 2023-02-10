@@ -82,7 +82,7 @@ public class UF_HWQUPC implements UF {
         validate(p);
         int root = p;
         // FIXME
-        // END 
+        // END
 
         while(root != parent[root]){
             root = parent[root];
@@ -178,7 +178,18 @@ public class UF_HWQUPC implements UF {
 
     private void mergeComponents(int i, int j) {
         // FIXME make shorter root point to taller one
-        // END 
+        // END
+
+        if (i==j) return;
+        if (height[i] < height[j]) {
+            parent[i]=j;
+            height[j] += height[i];
+        }
+        else {
+            parent[j] = i;
+            height[i] += height[j];
+        }
+
     }
 
     /**
