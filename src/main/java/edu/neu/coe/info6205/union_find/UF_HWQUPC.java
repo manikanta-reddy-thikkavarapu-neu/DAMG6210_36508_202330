@@ -83,6 +83,14 @@ public class UF_HWQUPC implements UF {
         int root = p;
         // FIXME
         // END 
+
+        while(root != parent[root]){
+            root = parent[root];
+        }
+        if(pathCompression){
+            doPathCompression(p);
+        }
+
         return root;
     }
 
