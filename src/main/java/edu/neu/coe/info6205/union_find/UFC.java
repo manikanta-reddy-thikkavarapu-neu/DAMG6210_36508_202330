@@ -7,7 +7,6 @@ public class UFC {
     public static int count(int n) {
         int noc = 0; Random rc = new Random();
         UF_HWQUPC ufc = new UF_HWQUPC(n, true);
-
         while (ufc.components()!=1)
         {
             int p = rc.nextInt(n);
