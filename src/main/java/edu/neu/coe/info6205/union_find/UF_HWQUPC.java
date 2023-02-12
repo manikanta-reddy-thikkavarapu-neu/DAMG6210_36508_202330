@@ -84,11 +84,14 @@ public class UF_HWQUPC implements UF {
         // FIXME
         // END
 
-        while(root != parent[root]){
-            root = parent[root];
-        }
         if(pathCompression){
             doPathCompression(p);
+            root = parent[root];
+        }
+        else {
+            while(root != parent[root]){
+                root = parent[root];
+            }
         }
 
         return root;
@@ -181,13 +184,15 @@ public class UF_HWQUPC implements UF {
         // END
 
         if (i==j) return;
-        if (height[i] < height[j]) {
-            parent[i]=j;
-            height[j] += height[i];
+        else if (height[i] == height[j]) {
+            parent[j]=i;
+            height[i]++;
+        }
+        else if(height[i] < height[j]) {
+            parent[i] = j;
         }
         else {
             parent[j] = i;
-            height[i] += height[j];
         }
 
     }

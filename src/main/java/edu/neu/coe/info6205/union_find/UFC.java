@@ -11,10 +11,9 @@ public class UFC {
         {
             int p = rc.nextInt(n);
             int q = rc.nextInt(n);
-
+            noc++;
             if(!ufc.connected(p,q)) {
                 ufc.union(p, q);
-                noc++;
             }
         }
         return noc;
