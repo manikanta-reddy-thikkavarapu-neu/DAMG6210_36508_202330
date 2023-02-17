@@ -17,19 +17,24 @@ import java.util.concurrent.ForkJoinPool;
 public class Main {
 
     public static void main(String[] args) {
+        int size = 400000;
         processArgs(args);
-        System.out.println("Degree of parallelism: " + ForkJoinPool.getCommonPoolParallelism());
-        Random random = new Random();
-        int[] array = new int[2000000];
-        ArrayList<Long> timeList = new ArrayList<>();
-        for (int j = 50; j < 100; j++) {
-            ParSort.cutoff = 10000 * (j + 1);
-            // for (int i = 0; i < array.length; i++) array[i] = random.nextInt(10000000);
-            long time;
-            long startTime = System.currentTimeMillis();
+        System.out.println("Array size: "+size);
+        int thread = 2;
+        while(thread < 128) {
+            ForkJoinPool pool = new ForkJoinPool(thread);
+            System.out.println("Degree of parallelism: " + pool.getParallelism());
+            Random random = new Random();
+            int[] array = new int[size];
+            ArrayList<Long> timeList = new ArrayList<>();
+            for (int j = 0; j < 10; j++) {
+                ParSort.cutoff = 4000 * (j + 1);
+                // for (int i = 0; i < array.length; i++) array[i] = random.nextInt(10000000);
+                long time;
+                long startTime = System.currentTimeMillis();
             for (int t = 0; t < 10; t++) {
                 for (int i = 0; i < array.length; i++) array[i] = random.nextInt(10000000);
-                ParSort.sort(array, 0, array.length);
+                ParSort.sort(array, 0, array.length, pool);
             }
             long endTime = System.currentTimeMillis();
             time = (endTime - startTime);
@@ -55,6 +60,8 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        thread *= 2;
+    }
     }
 
     private static void processArgs(String[] args) {
