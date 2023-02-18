@@ -19,11 +19,11 @@ public class Main {
     public static void main(String[] args) {
         int size = 400000;
         processArgs(args);
-        System.out.println("Array size: "+size);
+        System.out.println("Array size : "+size);
         int thread = 2;
         while(thread < 128) {
             ForkJoinPool pool = new ForkJoinPool(thread);
-            System.out.println("Degree of parallelism: " + pool.getParallelism());
+            System.out.println("Degree of parallelism : " + pool.getParallelism());
             Random random = new Random();
             int[] array = new int[size];
             ArrayList<Long> timeList = new ArrayList<>();
