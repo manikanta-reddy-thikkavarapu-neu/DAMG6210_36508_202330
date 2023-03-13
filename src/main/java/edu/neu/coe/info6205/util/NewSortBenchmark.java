@@ -41,7 +41,7 @@ public class NewSortBenchmark {
         };
         rF1.accept(r1.get());
         double randTime1 = rT1.run(r1.get(), 1);
-        System.out.println("Time for " + n + " elements of array is: " + randTime1 + " using Merge Sort");
+        System.out.println("Time taken for " + n + " elements of array using Merge Sort is : " + randTime1);
 
         h1.postProcess(merge.sort(r1.get()));
 
@@ -74,7 +74,7 @@ public class NewSortBenchmark {
         };
         rF2.accept(r2.get());
         double randTime2 = rT2.run(r2.get(), 1);
-        System.out.println("Time for " + n + " elements of array is: " + randTime2 + " using Quick Sort");
+        System.out.println("Time taken for " + n + " elements of array using Quick Sort is : " + randTime2);
 
         h2.postProcess(quick.sort(r2.get()));
 
@@ -107,7 +107,7 @@ public class NewSortBenchmark {
         };
         rF3.accept(r3.get());
         double randTime3 = rT3.run(r3.get(), 1);
-        System.out.println("Time for " + n + " elements of array is: " + randTime3 + " using Heap Sort");
+        System.out.println("Time taken for " + n + " elements of array using Heap Sort is : " + randTime3);
 
         h3.postProcess(heap.sort(r3.get()));
 
